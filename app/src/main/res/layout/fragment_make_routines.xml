@@ -1,0 +1,127 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/fragment_make"
+    tools:context=".Starting_Page">
+
+    <!-- Fragment A UI components -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp">
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/newWorkoutTitle"
+        android:layout_height="wrap_content"
+        android:text="@string/new_workout_secsion"
+        android:layout_marginTop="30dp"
+        android:textAlignment="center"
+        android:textSize="40sp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/givename"
+        android:layout_marginTop="30dp"
+        android:hint="Give it a name"
+        android:layout_below="@id/newWorkoutTitle"/>
+
+        <SearchView
+            android:id="@+id/searchView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="Search Here"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginBottom="15dp"
+            android:layout_below="@id/givename"
+            />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/searchView2"
+
+            android:id="@+id/rel_list">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="192dp"
+            android:id="@+id/lista"
+            android:visibility="invisible"
+            android:background="@drawable/listbackground"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lista2"
+            />
+
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/BSelectImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="SELECT IMAGE"
+            android:onClick="imageChooser"
+            android:textColor="@android:color/white"
+            android:layout_below="@id/rel_list"
+            android:textSize="18sp" />
+
+        <!--ImageView to preview the selected image-->
+        <ImageView
+            android:id="@+id/IVPreviewImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_above="@id/gombok"
+            android:layout_marginStart="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/gombok"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            >
+
+            <Button
+                android:id="@+id/Save"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                android:layout_marginEnd="10dp"
+                android:onClick="cancel2"/>
+
+
+            <Button
+                android:id="@+id/cancel2"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:onClick="cancel2"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

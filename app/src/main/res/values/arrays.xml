@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="type">
+        <item>Outside cardio</item>
+        <item>Inside cardio</item>
+        <item>Outside workout</item>
+        <item>Insideworkout</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="workouts_name">
+        <item>gym</item>
+        <item>yoga</item>
+        <item>Outside</item>
+    </string-array>
+
+    <array name="workouts_image">
+        <item>@drawable/gym</item>
+        <item>@drawable/yoga</item>
+        <item>@drawable/outdoor</item>
+    </array>
+
+    <array name="w_image">
+        <item>@drawable/gym</item>
+        <item>@drawable/yoga</item>
+        <item>@drawable/outdoor</item>
+        <item>@drawable/gym</item>
+        <item>@drawable/yoga</item>
+        <item>@drawable/outdoor</item>
+        <item>@drawable/outdoor</item>
+        <item>@drawable/gym</item>
+        <item>@drawable/yoga</item>
+        <item>@drawable/outdoor</item>
+        <item>@drawable/yoga</item>
+        <item>@drawable/outdoor</item>
+        <item>@drawable/gym</item>
+        <item>@drawable/yoga</item>
+        <item>@drawable/outdoor</item>
+        <item>@drawable/yoga</item>
+        <item>@drawable/yoga</item>
+        <item>@drawable/outdoor</item>
+        <item>@drawable/yoga</item>
+    </array>
+
+    <string-array name="w_type">
+        <item>park</item>
+        <item>park</item>
+        <item>park</item>
+        <item>park</item>
+
+        <item>gym</item>
+        <item>gym</item>
+        <item>gym</item>
+        <item>gym</item>
+        <item>gym</item>
+        <item>gym</item>
+        <item>gym</item>
+        <item>gym</item>
+
+        <item>cardio</item>
+        <item>cardio</item>
+        <item>cardio</item>
+        <item>cardio</item>
+        <item>cardio</item>
+        <item>cardio</item>
+        <item>cardio</item>
+    </string-array>
+
+    <string-array name="w_name">
+        //park
+        <item>Pushups</item>
+        <item>Archer pushups</item>
+        <item>Knee pushups</item>
+        <item>Plank</item>
+        //gym
+        <item>Benchpress</item>
+        <item>Squat</item>
+        <item>Deadlift</item>
+        <item>Military press</item>
+        <item>Overhead Press</item>
+        <item>Dumbbell row</item>
+        <item>Lat pulldown</item>
+        <item>Incline benchpress </item>
+
+        //cardio
+        <item>Running</item>
+        <item>Cycling</item>
+        <item>Walking</item>
+        <item>Elliptical</item>
+        <item>Swimming</item>
+        <item>Stair Climber</item>
+        <item>High knees</item>
+
+
+
+
+    </string-array>
+
+</resources>

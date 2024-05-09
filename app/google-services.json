@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "644131331783",
+    "project_id": "musclegain2000-4544d",
+    "storage_bucket": "musclegain2000-4544d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644131331783:android:a649a42c05e849ff2668e2",
+        "android_client_info": {
+          "package_name": "com.example.musclegain2000"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644131331783-te173ogl90ltf6m1ejni00t1vj7474rk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.musclegain2000",
+            "certificate_hash": "d333e90a6f567957bf7a83a14829c7369e7b62a2"
+          }
+        },
+        {
+          "client_id": "644131331783-6k7ac9jdiur49hmhr72q1nhtaovutjle.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCu634Apd1BLwm8dB86CbUozGVi-tKIRpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644131331783-6k7ac9jdiur49hmhr72q1nhtaovutjle.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".Starting_Page">
+
+    <!-- Fragment A UI components -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/RoutinesName"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginTop="30dp"
+        android:textAlignment="center"
+        android:textSize="40sp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="80dp"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/Start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start"
+                android:layout_gravity="start"
+                android:layout_marginStart="20dp"
+                android:layout_alignParentStart="true"
+                android:minWidth="140dp"
+                android:layout_marginEnd="20dp"
+                android:onClick="Start"/>
+
+            <Button
+                android:id="@+id/Edit"
+                android:layout_marginEnd="20dp"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content"
+                android:text="@string/edit"
+                android:minWidth="140dp"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+
+    android:layout_alignParentTop="true"
+
+    tools:context=".Starting_Page">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/box">
+    <TextView
+        android:id="@+id/workouts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/workouts"
+        android:textColor="#43a047"
+        android:textSize="40sp"
+        android:textStyle="italic|bold"
+
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/itemscontainer"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:fitsSystemWindows="true"
+        android:layout_below="@id/workouts"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_gravity="fill_vertical"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:id="@+id/addnewworkouts"
+        android:layout_height="wrap_content"
+        android:text="@string/add_new_workout"
+        android:onClick="addWorkoutGroup"
+       android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+
+         />
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
