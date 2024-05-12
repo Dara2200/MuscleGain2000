@@ -1,30 +1,45 @@
 package com.example.musclegain2000.Routines;
 
+import java.util.List;
+
 public class Routines {
+
+
+
+    String name;
+    List<String> workouts;
+    int imageResource;
+
+    public Routines(String name, List<String> workouts, int image) {
+
+
+        this.name=name;
+        this.workouts=workouts;
+        this.imageResource=image;
+
+    }
+
+    public Routines(String names, int image) {
+
+        this.name=names;
+        this.imageResource=image;
+
+    }
     public Routines() {
     }
 
-    String name;
-            String [] workouts;
-            int imageResource;
-
-    public Routines(String name, String [] workouts, int imageResource ) {
-
-
-        name=this.name;
-        workouts=this.workouts;
-        imageResource= this.imageResource;
+    public Routines(String s) {
+        this.name=s;
 
     }
 
-    public Routines(String name, int resourceId) {
-
-        this.name=name;
-        this.imageResource=resourceId;
-
+    public Routines(String editTextValue, List<String> listViewData) {
+        this.name=editTextValue;
+        this.workouts=listViewData;
     }
 
-    public String[] getWorkouts() {
+
+    public List<String> getWorkouts() {
         return workouts;
     }
 
@@ -40,4 +55,13 @@ public class Routines {
         return imageResource;
     }
 
-   }
+    public void setWorkouts(List<String> workouts) {
+        this.workouts = workouts;
+    }
+
+    public void setImageResource(int imageResource) {
+        this.imageResource = imageResource;
+    }
+}
+
+

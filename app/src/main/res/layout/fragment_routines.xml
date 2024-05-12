@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
     android:fitsSystemWindows="true"
 
     android:layout_alignParentTop="true"
@@ -16,27 +17,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/box">
-    <TextView
-        android:id="@+id/workouts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/workouts"
-        android:textColor="#43a047"
-        android:textSize="40sp"
-        android:textStyle="italic|bold"
 
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/Routines_title"
+            android:background="@color/deepdarkgreen">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Routines"
+                android:textColor="@color/lightgreen"
+                android:textStyle="bold"
+                android:layout_marginVertical="20dp"
+                android:textSize="60dp"
+                android:textAlignment="center"
+                />
+
+        </RelativeLayout>
 
 
-    <LinearLayout
+        <LinearLayout
         android:layout_width="match_parent"
         android:id="@+id/itemscontainer"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
         android:fitsSystemWindows="true"
-        android:layout_below="@id/workouts"
+        android:layout_below="@id/Routines_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -45,22 +53,22 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="vertical"
             android:layout_gravity="fill_vertical"
-            />
+            android:scrollbars="vertical" />
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:id="@+id/addnewworkouts"
-        android:layout_height="wrap_content"
-        android:text="@string/add_new_workout"
-        android:onClick="addWorkoutGroup"
-       android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-
-         />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addnewworkouts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/itemscontainer"
+            android:layout_alignBottom="@id/itemscontainer"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:onClick="addWorkoutGroup"
+            app:srcCompat="@drawable/baseline_add_24"
+            android:backgroundTint="@color/darkgreen"/>
     </RelativeLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</FrameLayout>

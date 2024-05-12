@@ -2,31 +2,48 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/gray"
+    android:orientation="vertical"
+    tools:context=".Starting_Page">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/WorkoutNamecontainer"
+        android:layout_height="wrap_content"
+        android:background="@color/deepdarkgreen">
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/WorkoutName_d"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:textColor="@color/lightgreen"
+            android:textStyle="bold"
+            android:layout_marginVertical="20dp"
+            android:textSize="60dp"
+            android:textAlignment="center"
+            />
+        </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/WorkoutNamecontainer"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp">
-    <TextView
-        android:layout_width="match_parent"
-        android:id="@+id/WorkoutName_d"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_marginTop="30dp"
-        android:textAlignment="center"
-        android:textSize="40sp"/>
+
+
+
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="270dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="40dp"
         android:layout_alignParentBottom="true">
 
         <Button
             android:id="@+id/Start_w"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/start"
             android:layout_gravity="start"
@@ -34,18 +51,24 @@
             android:layout_alignParentStart="true"
             android:minWidth="140dp"
             android:layout_marginEnd="20dp"
-            android:onClick="Start"/>
+            android:onClick="Start_w"
+            android:layout_marginBottom="15dp"/>
+
+
 
         <Button
-            android:id="@+id/Edit_w"
-            android:layout_marginEnd="20dp"
-            android:layout_width="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_alignParentEnd="true"
+            android:id="@+id/cancel_wdetail"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/edit"
+            android:text="cancel"
+            android:layout_gravity="start"
+            android:layout_below="@id/Start_w"
+            android:layout_marginStart="20dp"
+            android:layout_alignParentStart="true"
             android:minWidth="140dp"
-            />
+            android:layout_marginEnd="15dp"
+            android:onClick="Start"/>
+
     </RelativeLayout>
 </RelativeLayout>
 </RelativeLayout>

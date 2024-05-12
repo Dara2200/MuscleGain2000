@@ -3,53 +3,134 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:id="@+id/fragment_edit"
+    android:background="@drawable/gray"
     tools:context=".Starting_Page">
 
     <!-- Fragment A UI components -->
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:id="@+id/Routinesedit_title_container"
+            android:background="@color/deepdarkgreen">
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/Routinesedit_title"
+                android:layout_height="wrap_content"
+                android:text="name"
+                android:textColor="@color/lightgreen"
+                android:textStyle="bold"
+                android:layout_marginVertical="20dp"
+                android:textSize="60dp"
+                android:textAlignment="center"
+                />
+
+        </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginEnd="30dp"
+        android:layout_below="@id/Routinesedit_title_container"
         android:layout_marginStart="30dp">
-    <TextView
-        android:layout_width="match_parent"
-        android:id="@+id/WorkoutName"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_marginTop="30dp"
+
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editname"
+            android:layout_marginTop="30dp"
+            android:hint="@string/give_it_a_name"
         android:textAlignment="center"
-        android:textSize="40sp"/>
+            android:background="@drawable/lightgreen"
+           android:textSize="30dp"
+            android:inputType="text" />
+
+        <SearchView
+            android:id="@+id/searchView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="Search Here"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/lightgreen"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginBottom="15dp"
+            android:layout_below="@id/editname"
+            />
+
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="80dp"
-            android:layout_alignParentBottom="true">
+            android:layout_below="@id/searchView3"
+            android:layout_above="@id/Save_edit"
+            android:layout_marginBottom="10dp"
 
-            <Button
-                android:id="@+id/Start"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/start"
-                android:layout_gravity="start"
-                android:layout_marginStart="20dp"
-                android:layout_alignParentStart="true"
-                android:minWidth="140dp"
-                android:layout_marginEnd="20dp"
-                android:onClick="Start"/>
+            android:id="@+id/rel_list">
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="192dp"
+                android:id="@+id/lista_edit"
+                android:visibility="invisible"
+                android:background="@drawable/listbackground2"/>
 
-            <Button
-                android:id="@+id/Edit"
-                android:layout_marginEnd="20dp"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_alignParentEnd="true"
+
+            <ListView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/edit"
-                android:minWidth="140dp"
-                android:onClick="Edit"/>
+                android:id="@+id/lista2_edit"
+                android:background="@drawable/listbackground"
+
+                />
+
         </RelativeLayout>
+
+
+
+            <Button
+                android:id="@+id/Save_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                android:layout_marginEnd="10dp"
+                android:layout_above="@id/buttonholder2"
+                android:layout_marginBottom="20dp"
+                 />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="25dp"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/buttonholder2">
+
+            <Button
+                android:id="@+id/cancel2_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:text="cancel"
+                />
+            <Button
+                android:id="@+id/delete"
+
+                android:layout_marginHorizontal="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="delete"
+                />
+
+
+
+        </LinearLayout>
+
+
     </RelativeLayout>
+
+
 
 </RelativeLayout>

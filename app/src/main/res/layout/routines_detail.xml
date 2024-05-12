@@ -3,39 +3,66 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:id="@+id/routines_details"
+    android:background="@drawable/gray"
     tools:context=".Starting_Page">
 
     <!-- Fragment A UI components -->
 
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/RoutinesNamecontainer"
+        android:layout_height="wrap_content"
+        android:background="@color/deepdarkgreen">
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/RoutinesName"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:textColor="@color/lightgreen"
+            android:textStyle="bold"
+            android:layout_marginVertical="20dp"
+            android:textSize="60dp"
+            android:textAlignment="center"
+            />
+
+    </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginEnd="30dp"
-        android:layout_marginStart="30dp">
-    <TextView
-        android:layout_width="match_parent"
-        android:id="@+id/RoutinesName"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_marginTop="30dp"
-        android:textAlignment="center"
-        android:textSize="40sp"/>
+        android:layout_marginStart="30dp"
+        android:layout_below="@id/RoutinesNamecontainer">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/listbackground"
+            android:id="@+id/Routine_detaillist"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="130dp"
+            android:layout_alignBottom="@id/buttonpanel2"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="80dp"
-            android:layout_alignParentBottom="true">
+            android:layout_marginBottom="40dp"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/buttonpanel2">
 
             <Button
                 android:id="@+id/Start"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/start"
                 android:layout_gravity="start"
                 android:layout_marginStart="20dp"
                 android:layout_alignParentStart="true"
                 android:minWidth="140dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginEnd="20dp"
                 android:onClick="Start"/>
 
@@ -47,7 +74,20 @@
                 android:layout_alignParentEnd="true"
                 android:layout_height="wrap_content"
                 android:text="@string/edit"
+                android:layout_below="@id/Start"
                 android:minWidth="140dp"
+                />
+            <Button
+                android:id="@+id/cancel_Rdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cancel"
+                android:layout_gravity="start"
+                android:layout_below="@id/Start"
+                android:layout_marginStart="20dp"
+                android:layout_alignParentStart="true"
+                android:minWidth="140dp"
+                android:layout_marginEnd="15dp"
                 />
         </RelativeLayout>
     </RelativeLayout>

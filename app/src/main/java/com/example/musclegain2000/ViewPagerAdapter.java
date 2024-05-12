@@ -9,6 +9,8 @@ import com.example.musclegain2000.Routines.RoutinesFragment;
 import com.example.musclegain2000.workout.Home_fragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
+
+public     RoutinesFragment routinesFragment;
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
@@ -19,12 +21,17 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
       switch (position) {
 
           case 0: return new Home_fragment();
-          case 1: return new RoutinesFragment();
+          case 1:
+              RoutinesFragment routinesFragment = new RoutinesFragment();
+              this.routinesFragment = routinesFragment;
+              return  routinesFragment;
           case 2: return new SettingsFragment();
           default: return new Home_fragment();
       }
 
     }
+
+
 
     @Override
     public int getItemCount() {

@@ -105,14 +105,18 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void firebaseAuthWithGoogle(String idToken) {
+        Intent intent = new Intent(this, Starting_Page.class);
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(LOG_TAG, "signInWithCredential:success");
-                   //TODO .............
+                    startActivity(intent);
+
+
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(LOG_TAG, "signInWithCredential:failure", task.getException());

@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Starting_Page"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/workoutcardcontainer"
     android:layout_margin="8dp"
     android:id="@+id/workout"
+
     card_view:cardPreventCornerOverlap="false">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/workoutcardimage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:minHeight="50dp"
-            android:adjustViewBounds="true" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/workoutcard">
 
         <TextView
+
+            android:layout_marginBottom="20dp"
             android:id="@+id/workoutcardTitle"
             android:layout_width="wrap_content"
+            android:background="@drawable/trsnsparent"
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="@string/name"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
-            android:textSize="30sp"
+            android:textSize="40sp"
             android:textStyle="bold"
             android:textColor="@color/black" />
 
     </RelativeLayout>
-</androidx.cardview.widget.CardView >
+</LinearLayout>

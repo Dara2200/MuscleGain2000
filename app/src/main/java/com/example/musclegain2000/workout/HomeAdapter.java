@@ -27,6 +27,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
     private ArrayList<Workout> mWorkoutItemDataAll;
 
     private Context mContext;
+
+    Animation scaleup;
+    Animation scaledown;
     private int lastPosition = -1;
     private OnItemClickListener mListener;
 
@@ -60,6 +63,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
 
         View v =LayoutInflater.from(parent.getContext()).inflate(R.layout.workout_card,parent,false);
 
+
+        scaledown = AnimationUtils.loadAnimation(mContext,R.anim.itemclick2);
+        scaleup = AnimationUtils.loadAnimation(mContext,R.anim.itemclick2);
         return new ViewHolder(v, (OnItemClickListener) mListener);
     }
 
@@ -129,7 +135,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
 
         // Member Variables for the TextViews
         private TextView mTitleText;
-        private ImageView mItemImage;
         private TextView type;
 
         ViewHolder(View itemView, final OnItemClickListener listener) {
@@ -137,19 +142,30 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
 //TODO............
             // Initialize the views.
             mTitleText = itemView.findViewById(R.id.workoutcardTitle);
-            mItemImage = itemView.findViewById(R.id.workoutcardimage);
+
             itemView.findViewById(R.id.workout);
+
+
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) ;
-                        {
-                            listener.onItemClick(position);
+                    v.startAnimation(scaledown);
+                    v.startAnimation(scaleup);
+
+                    itemView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (listener != null) {
+                                int position = getAdapterPosition();
+                                if (position != RecyclerView.NO_POSITION) ;
+                                {
+                                    listener.onItemClick(position);
+                                }
+                            }// Code to be executed after the delay
                         }
-                    }
+                    }, 300);
                 }
             });
         }
@@ -160,9 +176,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
             Log.i(LOG_TAG, String.valueOf(currentItem.getName()));
             Log.i(LOG_TAG, String.valueOf(mTitleText));
 
-            // Load the images into the ImageView using the Glide library.
-            Glide.with(mContext).load(currentItem.getImage()).into(mItemImage);
-            //TODO.......
         }
     }
 }

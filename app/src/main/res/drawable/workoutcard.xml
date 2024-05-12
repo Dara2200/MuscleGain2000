@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <stroke android:color="@color/transparent"/>
+    <corners android:radius="80dp"
+        >
+    </corners>
+    <stroke
+        android:width="7dp"
+    android:color="@color/darkergreen" /> <!-- Border color, define in colors.xml -->
+
+    <gradient
+
+        android:angle="@integer/material_motion_duration_short_1"
+        android:startColor="@color/darkergreen"
+        android:endColor="@color/darkergreen"
+        android:centerColor="@color/darkgreen">
+
+    </gradient>
+
+</shape>

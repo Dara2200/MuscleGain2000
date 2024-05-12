@@ -48,9 +48,13 @@ dependencies {
     implementation(libs.play.services.auth)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    implementation ("com.google.firebase:firebase-storage:20.0.0")
     implementation ("com.google.android.material:material:1.11.0")
     implementation("com.google.firebase:firebase-analytics")
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))

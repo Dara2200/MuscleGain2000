@@ -1,50 +1,41 @@
 package com.example.musclegain2000;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.musclegain2000.Routines.EditRoutines;
 import com.example.musclegain2000.Routines.MakeRoutines;
-import com.example.musclegain2000.Routines.RoutinesAdapter;
-import com.example.musclegain2000.Routines.StartRoutines;
-import com.example.musclegain2000.Routines.Details_Routines;
+import com.example.musclegain2000.Routines.RoutinesFragment;
+import com.example.musclegain2000.Routines.StartingRoutineActivity;
+import com.example.musclegain2000.workout.StartingWorkoutActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class Starting_Page extends AppCompatActivity
 {
-    private static final String LOG_TAG = Starting_Page.class.getName();
-
+    MakeRoutines makeRoutines ;
     ViewPagerAdapter viewPagerAdapter;
     ViewPager2 viewPager2;
       FrameLayout frameLayout;
-    FrameLayout frameLayout2;
-    FrameLayout frameLayout3;
-      Button BSelectImage;
+      FrameLayout frameLayoutedit;
+
+      Button button,button2;
+
       ImageView IVPreviewImage;
 
     int SELECT_PICTURE = 200;
+    Fragment routinesfragment;
 
 
     BottomNavigationView bottomNavigationView;
@@ -60,31 +51,38 @@ public class Starting_Page extends AppCompatActivity
             return insets;
         });
 
+        button2 = this.findViewById(R.id.cancel2);
+
+        button = this.findViewById(R.id.Save);
+
         bottomNavigationView
                 = findViewById(R.id.bottomNavigationView);
-        frameLayout = findViewById(R.id.fragment_container);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new MakeRoutines())
-                .commit();
+        frameLayoutedit = findViewById(R.id.fragment_edits);
+        frameLayout = findViewById(R.id.fragment_makeRoutines);
+
+
         viewPager2 = findViewById(R.id.viewPager);
         viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager2.setAdapter(viewPagerAdapter);
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                int id = menuItem.getItemId();
-                if (id == R.id.home) {
-                    viewPager2.setCurrentItem(0);
-                }
-                if (id == R.id.workouts) {
-                    viewPager2.setCurrentItem(1);
-                }
-                if (id == R.id.settings) {
-                    viewPager2.setCurrentItem(2);
-                }
-                return false;
+
+        bottomNavigationView.setOnItemSelectedListener(menuItem -> {
+            int id = menuItem.getItemId();
+            if (id == R.id.home) {
+                viewPager2.setCurrentItem(0);
             }
+            if (id == R.id.routines) {
+                viewPager2.setCurrentItem(1);
+
+            }
+            if (id == R.id.settings) {
+                viewPager2.setCurrentItem(2);
+            }
+            return false;
         });
+        Fragment fragment = viewPagerAdapter.routinesFragment;
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_makeRoutines, makeRoutines = new MakeRoutines(fragment))
+                .commit();
 
     }
 
@@ -115,9 +113,16 @@ viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
 switch (position) {
     case 0:
         bottomNavigationView.getMenu().findItem(R.id.home).setChecked(true);
+
         break;
     case 1:
-        bottomNavigationView.getMenu().findItem(R.id.workouts).setChecked(true);
+        bottomNavigationView.getMenu().findItem(R.id.Routines_title).setChecked(true);
+
+        RoutinesFragment fragment = viewPagerAdapter.routinesFragment;
+        if (fragment instanceof RoutinesFragment) {
+            // If the fragment is YourFragment, refresh its data
+            fragment.refreshData();
+        }
         break;
     case 2:
         bottomNavigationView.getMenu().findItem(R.id.settings).setChecked(true);
@@ -127,48 +132,28 @@ switch (position) {
 });
 
   }
-      public void addWorkoutGroup(View view) {
 
+      public void addWorkoutGroup(View view) {
           frameLayout.setVisibility(View.VISIBLE);
           viewPager2.setVisibility(View.INVISIBLE);
           bottomNavigationView.setVisibility(View.INVISIBLE);
       }
 
 
-    public void imageChooser(View view) {
-        BSelectImage = frameLayout.findViewById(R.id.BSelectImage);
-        IVPreviewImage = frameLayout.findViewById(R.id.IVPreviewImage);
-        // create an instance of the
-        // intent of the type image
-        Intent i = new Intent();
-        i.setType("image/*");
-        i.setAction(Intent.ACTION_GET_CONTENT);
-
-        // pass the constant to compare it
-        // with the returned requestCode
-        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
-
-    }
-
-    public void Start(View view) {
-        Intent intent = new Intent(this, StartRoutines.class);
-        startActivity(intent);
-    }
-
     public void logout(View view) {
 
         SaveSharedPreference.clearUserName(this);
-        finish();
-
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
-    public void cancel2(View view) {
+    public void Start(View view) {
+        Intent intent = new Intent(this, StartingRoutineActivity.class);
+        startActivity(intent);
+    }
 
-        frameLayout.setVisibility(View.INVISIBLE);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new MakeRoutines())
-                .commit();
-        viewPager2.setVisibility(View.VISIBLE);
-        bottomNavigationView.setVisibility(View.VISIBLE);
+    public void Start_w(View view) {
+        Intent intent = new Intent(this, StartingWorkoutActivity.class);
+        startActivity(intent);
     }
 }

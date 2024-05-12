@@ -1,15 +1,8 @@
 package com.example.musclegain2000.Routines;
 
 import android.content.res.TypedArray;
+
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainerView;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,68 +12,64 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager2.widget.ViewPager2;
 import com.example.musclegain2000.R;
-import com.example.musclegain2000.Starting_Page;
-import com.example.musclegain2000.workout.Details_workout;
 import com.example.musclegain2000.workout.HomeAdapter;
-import com.example.musclegain2000.workout.Home_fragment;
 import com.example.musclegain2000.workout.Workout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-
 import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.List;
-import java.util.Objects;
 
 
 public class MakeRoutines extends Fragment implements AdapterView.OnItemSelectedListener, MakeRoutinesiter {
-    private FirebaseAuth mAuth;
-
     private ArrayAdapter<String> adapter;
     ViewPager2 viewPager2;
+
+    Button button2;
 
     BottomNavigationView bottomNavigationView;
     private ArrayAdapter<String> adapter2;
 
     private HomeAdapter mAdapter;
+    private RoutinesAdapter RAdapter;
 
     private ArrayList<String> names2 = new ArrayList<>();
     private ArrayList<Workout> mItemsData;
+    private ArrayList<Routines> RItemsData;
     private ListView listView;
     private ListView listView2;
-
     EditText editText;
-
-    ImageView imageView;
-
-    private FirebaseFirestore mFirestore;
 
     private CollectionReference mItem;
     private SearchView searchView;
+    private CollectionReference mItems;
+    Button button;
+    TextView listtext;
 
-    ImageView initialDrawable;
+    FrameLayout frameLayout;
 
-    ArrayList<String> names3 = new ArrayList<>();
-
-
+    List<String> names3 = new ArrayList<>();
+    List<String> names = new ArrayList<>();
+    Fragment fragment;
 
     public MakeRoutines() {
         // Required empty public constructor
     }
-
-
+    public MakeRoutines(Fragment fragment) {
+        this.fragment=fragment;
+        // Required empty public constructor
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,40 +77,65 @@ public class MakeRoutines extends Fragment implements AdapterView.OnItemSelected
 
         View v = inflater.inflate(R.layout.fragment_make_routines, container, false);
 
-
-        mAuth = FirebaseAuth.getInstance();
-
-        imageView = v.findViewById(R.id.IVPreviewImage);
+button2 = v.findViewById(R.id.cancel2);
+        listtext = getActivity().findViewById(R.id.center_text);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        button = v.findViewById(R.id.Save);
         editText = v.findViewById(R.id.givename);
         listView = v.findViewById(R.id.lista);
         listView2 = v.findViewById(R.id.lista2);
         bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
         viewPager2 = getActivity().findViewById(R.id.viewPager);
         // Inflate the layout for this fragment
-        initialDrawable = imageView;
         searchView = v.findViewById(R.id.searchView2);
 
 
+        RItemsData = new ArrayList<>();
+        RAdapter = new RoutinesAdapter(this.getActivity(), RItemsData);
+
+
+        frameLayout = getActivity().findViewById(R.id.fragment_makeRoutines);
         mItemsData = new ArrayList<>();
-
-
         mAdapter = new HomeAdapter(this.getActivity(), mItemsData);
-        mFirestore = FirebaseFirestore.getInstance();
+
+        FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
         mItem = mFirestore.collection("Workout");
+        mItems = mFirestore.collection("Routines");
 
 
-        ArrayList<String> names;
         names = queryData();
 
         adapter = new ArrayAdapter<>(this.getActivity(),
-                android.R.layout.simple_list_item_1, names);
+                R.layout.textcenter, R.id.center_text, names);
 
         listView.setAdapter(adapter);
 
-        adapter2 = new ArrayAdapter<>(this.getActivity(),
-                android.R.layout.simple_list_item_1, names3);
+        ArrayAdapter<String> ad = new ArrayAdapter<>(this.getActivity(), R.layout.textcenter, R.id.center_text, names3);
 
-        listView2.setAdapter(adapter2);
+        listView2.setAdapter(ad);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadData();
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                frameLayout.setVisibility(View.INVISIBLE);
+                viewPager2.setVisibility(View.VISIBLE);
+                bottomNavigationView.setVisibility(View.VISIBLE);
+                  getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_makeRoutines, new MakeRoutines())
+                        .commit();
+
+
+            }
+        });
+
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -130,7 +144,7 @@ public class MakeRoutines extends Fragment implements AdapterView.OnItemSelected
                 String selectedItem = names.get(position);
 
                 names3.add(selectedItem);
-                adapter2.notifyDataSetChanged();
+                ad.notifyDataSetChanged();
                 listView.setVisibility(View.INVISIBLE);
                 searchView.setQuery("", false);
 
@@ -144,6 +158,14 @@ public class MakeRoutines extends Fragment implements AdapterView.OnItemSelected
         });
 
 
+
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (names.isEmpty()) names = queryData();
+
+            }
+        });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -197,7 +219,6 @@ public class MakeRoutines extends Fragment implements AdapterView.OnItemSelected
                 results.count = 0;
                 results.values = null;
 
-
             } else {
                 if (charSequence.length() >= 3) {
 
@@ -249,18 +270,6 @@ public class MakeRoutines extends Fragment implements AdapterView.OnItemSelected
     }
 
 
-    private void initializeData() {
-            // Get the resources from the XML file.
-            String[] name = getResources().getStringArray(R.array.w_name);
-            String[] type = getResources().getStringArray(R.array.w_type);
-            TypedArray image = getResources().obtainTypedArray(R.array.w_image);
-            for (int i = 0; i < getResources().getStringArray(R.array.w_name).length; i++) {
-                Workout workout = new Workout(name[i], type[i], image.getResourceId(i, 0));
-                mItem.add(workout);
-            }
-
-            image.recycle();
-        }
 
         private ArrayList<String> queryData() {
             mItemsData.clear();
@@ -273,16 +282,49 @@ public class MakeRoutines extends Fragment implements AdapterView.OnItemSelected
                     names.add(item.getName());
 
                 }
-                if (mItemsData.isEmpty()) {
-
-                    initializeData();
-                    queryData();
-                }
                 // Notify the adapter of the change.
                 mAdapter.notifyDataSetChanged();
             });
             return names;
         }
+
+    public void uploadData() {
+        RItemsData.clear();
+        // Get data from UI elements
+        String editTextValue = editText.getText().toString().trim();
+        List<String> listViewData = names3;
+
+
+        if (editTextValue.isEmpty() || listViewData.isEmpty()) {
+            Toast.makeText(getActivity(),"You have empty boxes", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        Routines routines;
+        TypedArray image =  getResources().obtainTypedArray(R.array.workouts_image);
+             routines = new Routines(
+                    editTextValue,
+                    listViewData,image.getResourceId(0,0));
+        mItems.add(routines);
+
+
+
+            mItems.get().addOnSuccessListener(queryDocumentSnapshots -> {
+                // Notify the adapter of the change.
+            RAdapter.notifyDataSetChanged();
+            });
+
+        frameLayout.setVisibility(View.INVISIBLE);
+        viewPager2.setVisibility(View.VISIBLE);
+        bottomNavigationView.setVisibility(View.VISIBLE);
+
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_makeRoutines, new MakeRoutines())
+                .commit();
+
+
+    }
+
 
 
     @Override
@@ -294,6 +336,4 @@ public class MakeRoutines extends Fragment implements AdapterView.OnItemSelected
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
-
 }

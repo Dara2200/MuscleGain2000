@@ -8,8 +8,8 @@
     <gradient
         android:type="linear"
         android:angle="@integer/material_motion_duration_short_1"
-        android:startColor="@color/colorPrimaryDark"
-        android:endColor="@color/deepdarkgreen">
+        android:startColor="#501C07"
+        android:endColor="#00391B">
 
     </gradient>
 

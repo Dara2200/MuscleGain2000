@@ -6,11 +6,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.SearchView;
-
-import java.util.ArrayList;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -18,24 +17,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.musclegain2000.R;
-import com.example.musclegain2000.Routines.Details_Routines;
-import com.example.musclegain2000.Routines.Routines;
-import com.example.musclegain2000.Routines.RoutinesAdapter;
 import com.example.musclegain2000.Starting_Page;
-import com.example.musclegain2000.workout.HomeAdapter;
-import com.example.musclegain2000.workout.Workout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.ArrayList;
 
 public class Home_fragment extends Fragment {
 
     private static final String LOG_TAG = Starting_Page.class.getName();
 
     private FirebaseFirestore mFirestore;
+
 
     private CollectionReference mItem;
     private int gridNumber = 1;
@@ -44,11 +42,10 @@ public class Home_fragment extends Fragment {
     private ArrayList<Workout> mItemsData;
     private RecyclerView mRecyclerView2;
 
-    FrameLayout frameLayout;
+    FrameLayout frameLayout_detail;
     ViewPager2 viewPager2;
     BottomNavigationView bottomNavigationView;
     private SearchView searchView;
-    private ArrayList<String> itemList;
 
 
     public Home_fragment(){
@@ -96,13 +93,13 @@ public class Home_fragment extends Fragment {
         mRecyclerView2.setLayoutManager(new GridLayoutManager(
                 this.getContext(), gridNumber));
 
-
         searchView = v.findViewById(R.id.searchView);
 
         mItemsData = new ArrayList<>();
         mAdapter = new HomeAdapter(this.getActivity(), mItemsData);
         mFirestore = FirebaseFirestore.getInstance();
         mRecyclerView2.setAdapter(mAdapter);
+
         mItem = mFirestore.collection("Workout");
         queryData();
 
@@ -111,14 +108,15 @@ public class Home_fragment extends Fragment {
             public void onItemClick(int position) {
                 String title = mItemsData.get(position).name;
 
+
                 for (Workout workout : mItemsData) {
                     if (workout.getName().equals(title)) {
 
-                        frameLayout = getActivity().findViewById(R.id.fragment_container4);
+                        frameLayout_detail = getActivity().findViewById(R.id.fragment_details);
                         getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_container4, new Details_workout(workout))
+                                .replace(R.id.fragment_details, new Details_workout(workout))
                                 .commit();
-                        frameLayout.setVisibility(View.VISIBLE);
+                        frameLayout_detail.setVisibility(View.VISIBLE);
                         viewPager2.setVisibility(View.INVISIBLE);
                         bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
                         bottomNavigationView.setVisibility(View.INVISIBLE);
@@ -129,6 +127,8 @@ public class Home_fragment extends Fragment {
             }
 
         });
+
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -152,14 +152,10 @@ public class Home_fragment extends Fragment {
         // Get the resources from the XML file.
         String[] name = getResources().getStringArray(R.array.w_name);
         String[] type = getResources().getStringArray(R.array.w_type);
-        TypedArray image =  getResources().obtainTypedArray(R.array.w_image);
         for (int i = 0; i < getResources().getStringArray(R.array.w_name).length; i++) {
-            Workout workout = new Workout(name[i], type[i], image.getResourceId(i,0));
+            Workout workout = new Workout(name[i], type[i]);
             mItem.add(workout);
         }
-
-        image.recycle();
-
 
         Log.d(LOG_TAG,"Nem tom mivan");
     }
@@ -167,7 +163,8 @@ public class Home_fragment extends Fragment {
     private void queryData() {
         mItemsData.clear();
 
-        mItem.get().addOnSuccessListener(queryDocumentSnapshots -> {
+        mItem.get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
             for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                 Workout item = document.toObject(Workout.class);
                 mItemsData.add(item);

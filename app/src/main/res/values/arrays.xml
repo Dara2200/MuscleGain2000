@@ -9,10 +9,13 @@
     </string-array>
 
     <string-array name="workouts_name">
-        <item>gym</item>
-        <item>yoga</item>
-        <item>Outside</item>
+        <item>Cardio routine</item>
+        <item>Yoga and park</item>
+        <item>Gym</item>
     </string-array>
+
+
+
 
     <array name="workouts_image">
         <item>@drawable/gym</item>
@@ -20,27 +23,6 @@
         <item>@drawable/outdoor</item>
     </array>
 
-    <array name="w_image">
-        <item>@drawable/gym</item>
-        <item>@drawable/yoga</item>
-        <item>@drawable/outdoor</item>
-        <item>@drawable/gym</item>
-        <item>@drawable/yoga</item>
-        <item>@drawable/outdoor</item>
-        <item>@drawable/outdoor</item>
-        <item>@drawable/gym</item>
-        <item>@drawable/yoga</item>
-        <item>@drawable/outdoor</item>
-        <item>@drawable/yoga</item>
-        <item>@drawable/outdoor</item>
-        <item>@drawable/gym</item>
-        <item>@drawable/yoga</item>
-        <item>@drawable/outdoor</item>
-        <item>@drawable/yoga</item>
-        <item>@drawable/yoga</item>
-        <item>@drawable/outdoor</item>
-        <item>@drawable/yoga</item>
-    </array>
 
     <string-array name="w_type">
         <item>park</item>

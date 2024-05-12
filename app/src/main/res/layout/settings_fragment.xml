@@ -5,22 +5,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray"
     tools:context=".Starting_Page">
 
-    <TextView
-        android:id="@+id/settingsfragment"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/settingfragment"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/settings"
-        android:textColor="#43a047"
-        android:textSize="40sp"
-        android:textStyle="italic|bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignParentTop="true"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/deepdarkgreen">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:text="Settings"
+            android:textAlignment="center"
+            android:textColor="@color/lightgreen"
+            android:textSize="60dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
     <Button
         android:id="@+id/login"
         android:layout_width="match_parent"
@@ -29,11 +35,9 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="64dp"
         android:onClick="logout"
-        android:text="@string/logout"
+        app:flow_verticalAlign="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.131" />
+        android:text="@string/logout"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

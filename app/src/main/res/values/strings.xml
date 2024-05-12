@@ -36,5 +36,8 @@
     <string name="edit">Edit</string>
     <string name="start">Start</string>
     <string name="logout">Logout</string>
+    <string name="give_it_a_name">Give it a name</string>
+    <string name="select_image">SELECT IMAGE</string>
+
 
 </resources>
