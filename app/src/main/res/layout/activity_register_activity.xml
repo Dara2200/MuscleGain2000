@@ -54,7 +54,7 @@
             android:selectAllOnFocus="true" />
 
         <EditText
-            android:id="@+id/Email"
+            android:id="@+id/Email2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/nickname"
@@ -65,10 +65,10 @@
             android:selectAllOnFocus="true" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/password2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/Email"
+            android:layout_below="@id/Email2"
             android:layout_marginTop="16dp"
             android:autofillHints="@string/prompt_password"
             android:hint="@string/prompt_password"
@@ -81,7 +81,7 @@
             android:id="@+id/passwordagain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/password"
+            android:layout_below="@id/password2"
             android:layout_marginBottom="376dp"
             android:autofillHints="@string/password_again"
             android:hint="@string/password_again"

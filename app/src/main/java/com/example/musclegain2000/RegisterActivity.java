@@ -52,11 +52,12 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         NicknameEditText = findViewById(R.id.nickname);
-        EmailEditText = findViewById(R.id.Email);
-        passwordEditText = findViewById(R.id.password);
+        EmailEditText = findViewById(R.id.Email2);
+        passwordEditText = findViewById(R.id.password2);
         passwordAgainEditText = findViewById(R.id.passwordagain);
         genderTypeGroup = findViewById(R.id.gender);
         genderTypeGroup.check(R.id.man);
+        mAuth = FirebaseAuth.getInstance();
 
 
         preferences = getSharedPreferences(PREF_KEY, MODE_PRIVATE);

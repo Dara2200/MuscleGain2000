@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MuscleGain2000" parent="Theme.AppCompat.Light.NoActionBar">
+       <item name="colorButtonNormal">@color/darkgreen</item>
+        <item name="android:buttonCornerRadius">30dp</item>
+    </style>
+
+    <style name="Theme.MuscleGain2000" parent="Base.Theme.MuscleGain2000" />
+</resources>
