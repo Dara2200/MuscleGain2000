@@ -1,8 +1,8 @@
-Hello, remélem tetszik majd a kicsit minimalista programom.
+Hello, remélem tetszik majd a programom.
 
 A start activitik nincsenek befejezve.
 
-A routines oldal akkor frissül ha ellapozunk a workouts page-re vagy a settings-re,
+A routines oldal akkor frissül ha ellapozunk a workouts page-re vagy a settings-re(ez a routines_fragmentben.java ban oldottam meg egy lifecycle Hook-al),
 de ettől eltekintve az adatkezelés meg van valósitva. 
 
 A routines oldalon az elemek OrderBy-al vannak rendezve.
